@@ -111,7 +111,43 @@ function getRandom(arr) {
 }
 
 // Function to generate password with user input
-function generatePassword() {}
+function generatePassword() {
+  var passwordLength = getPasswordOptions();
+  if (passwordLength === null){
+    return;//Exit if user input is invalid
+  }
+}
+// declare variables
+var password = "";
+  var availableCharacters = [];
+//use confirm to get input from user
+  if (confirm("Include uppercase characters?")) {
+    //use concat method to joins two arr
+    availableCharacters = availableCharacters.concat(upperCasedCharacters);
+    password += getRandom(upperCasedCharacters);//call getRandom function
+  }
+
+  if (confirm("Include lowercase characters?")) {
+    availableCharacters = availableCharacters.concat(lowerCasedCharacters);
+    password += getRandom(lowerCasedCharacters);
+  }
+
+  if (confirm("Include numeric characters?")) {
+    availableCharacters = availableCharacters.concat(numericCharacters);
+    password += getRandom(numericCharacters);
+  }
+
+  if (confirm("Include special characters?")) {
+    availableCharacters = availableCharacters.concat(specialCharacters);
+    password += getRandom(specialCharacters);
+  }
+
+  for (var i = password.length; i < passwordLength; i++) {
+    password += getRandom(availableCharacters);
+  }
+
+  return password;
+
 
 // Get references to the #generate element
 var generateBtn = document.querySelector("#generate");
